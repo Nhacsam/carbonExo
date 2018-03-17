@@ -1,0 +1,6 @@
+{
+  "extends": ["bambi/node"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
