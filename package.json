@@ -12,6 +12,7 @@
   "author": "Nicolas Djambazian <nicolas@djambazian.fr>",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
