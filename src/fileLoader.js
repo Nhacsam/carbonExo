@@ -3,7 +3,7 @@ import { mapValues } from 'lodash';
 import util from 'util';
 import fs from 'fs';
 
-type ConfigType = {
+export type ConfigType = {
   mountains: {
     x: number,
     y: number,
@@ -27,6 +27,7 @@ type ConfigType = {
 };
 
 const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 function mapResults<T>(regex: RegExp, input: string, callback: (string[]) => T): T[] {
   let match;
@@ -91,4 +92,23 @@ function parseFile(lines) {
 export async function loadFile(path: string): Promise<ConfigType> {
   const fileContent = await readFile(path, 'utf8');
   return parseFile(fileContent);
+}
+
+export async function writeFinalFile(path: string, config: ConfigType): Promise<void> {
+  let result = '';
+
+  result += `C - ${config.map.width} - ${config.map.height}\n`;
+  config.mountains.forEach(mountain => {
+    result += `M - ${mountain.x} - ${mountain.y}\n`;
+  });
+  config.treasures.forEach(treasure => {
+    result += `T - ${treasure.x} - ${treasure.y} - ${treasure.quantity}\n`;
+  });
+  config.adventurers.forEach(adventurer => {
+    result += `A - ${adventurer.name} - ${adventurer.x} - ${adventurer.y} - ${
+      adventurer.direction
+    } - ${adventurer.treasures}\n`;
+  });
+
+  await writeFile(path, result);
 }

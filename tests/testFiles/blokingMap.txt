@@ -1,0 +1,14 @@
+
+# Map
+C - 3 - 3
+
+# Montaigns
+M - 1 - 0
+M - 2 - 1
+
+# Treasures
+T - 0 - 2 - 2
+
+# Adventurer
+A - Alice - 0 - 0 - E - AADAAAAAAGA
+A - Bob - 0 - 1 - N - ADDAAGA

@@ -5,7 +5,6 @@
   "main": "./index.js",
   "scripts": {
     "start": "node ./build/main.js",
-    "dev": "backpack",
     "build": "backpack build",
     "test": "jest tests"
   },
